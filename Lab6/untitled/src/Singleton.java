@@ -31,6 +31,9 @@ class Singleton {
         System.out.println(web.getAcces());
         System.out.println(web.getShoppingCart());
         p.setPromotion(50);
+        System.out.println(app.getAcces(1,"Dan"));
+        System.out.println(app.getDataBase());
+
 
     }
 }
