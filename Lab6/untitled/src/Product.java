@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Product {
     Integer id;
     String name;
@@ -5,15 +7,16 @@ public class Product {
     int price;
     boolean onPromotion=false;
     DataBase dataBase;
-    Order orders;
+    ArrayList<Order> orders;
 
 
-  public Product(Integer id, String name, String supplier, DataBase dataBase, Order orders) {
+  public Product(Integer id, Integer price,String name, String supplier, DataBase dataBase) {
     this.id = id;
     this.name = name;
     this.supplier = supplier;
     this.dataBase = dataBase;
-    this.orders = orders;
+    this.orders = new ArrayList<>();
+    this.price=price;
     boolean onPromotion=false;
   }
 
@@ -43,11 +46,16 @@ public class Product {
 
     public void setPromotion(int percentage)
   {
-    this.price=this.price*percentage/100;
-    onPromotion=true;
+    try {
+      if (!(percentage > 0 && percentage <= 100))
+        throw new MyException("Valoarea procentajului este incorecta.");
+    }
+    catch(MyException e)
+    {
+      e.printStackTrace();
+      return;
+    }
+      this.price = this.price * percentage / 100;
+      onPromotion = true;
+    }
   }
-
-
-
-
-}
